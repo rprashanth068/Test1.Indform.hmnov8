@@ -462,21 +462,21 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
           </div>
           </div>
           <div className={styles["col-2"]}>
-          <div className="form-group tax">
-              <label className={styles.label} htmlFor="formGroupExampleInput">HST#</label>
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder=" " maxLength={17} />
+          <div className={`${styles["ms-TextField"]}`}>
+              <label className={styles["ms-Label"]} htmlFor="formGroupExampleInput">HST#</label>
+              <input type="text" className={styles["ms-TextField-field"]}  id="formGroupExampleInput" placeholder=" " maxLength={17} />
             </div>
           </div>
           <div className={styles["col-2"]}>
-          <div className="form-group tax">
-              <label className={styles.label} htmlFor="formGroupExampleInput">PST#</label>
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder=" " maxLength={8} />
+          <div className={`${styles["ms-TextField"]}`}>
+              <label className={styles["ms-Label"]} htmlFor="formGroupExampleInput">PST#</label>
+              <input type="text" className={styles["ms-TextField-field"]}  id="formGroupExampleInput" placeholder=" " maxLength={8} />
             </div>
           </div>
           <div className={styles["col-2"]}>
-          <div className="form-group tax">
-              <label className={styles.label} htmlFor="formGroupExampleInput">QST#</label>
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder=" " maxLength={15}/>
+          <div className={`${styles["ms-TextField"]}`}>
+              <label className={styles["ms-Label"]} htmlFor="formGroupExampleInput">QST#</label>
+              <input type="text" className={styles["ms-TextField-field"]}  id="formGroupExampleInput" placeholder=" " maxLength={15}/>
             </div>
           </div>
         </div>
