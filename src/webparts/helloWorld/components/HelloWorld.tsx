@@ -15,6 +15,7 @@ const edit_icon = require("../../../icons/NRD-00001_02013_ICO_Edit ff6600_001 (1
 const plus_icon = require("../../../icons/NRD-00001_02013_ICO_New ff6600_001 (2).svg");
 import { state, country, canadaStates, usStates } from "../../../data/Address";
 import { comments, documents, parents } from "../../../data/data";
+import {Typeahead} from 'react-typeahead';
 
 export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
   constructor(props) {
@@ -223,8 +224,8 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
   };
 
   toggleForms = () => {
-    this.setState({activeForm: this.state.activeForm === 0 ? 1 : 0});
-  }
+    this.setState({ activeForm: this.state.activeForm === 0 ? 1 : 0 });
+  };
 
   public render(): React.ReactElement<IHelloWorldProps> {
     const states =
@@ -236,37 +237,34 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
     return (
       <div className={styles.helloWorld}>
         <div className="container main-container ">
-          <h5 className="contact-header">Contact</h5>
-          <div className="contact-toolbar">
-            &nbsp; &nbsp;
-            <img
-              src={this.state.save as string}
-              height="20px"
-              width="20px"
-              className="saveicons"
-              alt="saveicon"
-              onMouseOver={() => this.iconOver("save")}
-              onMouseOut={() => this.iconOut("save")}
-            />
-            &nbsp; &nbsp; &nbsp; &nbsp;
-            <img
-              src={this.state.delete1 as string}
-              height="20px"
-              width="20px"
-              className="deleteicon1"
-              alt="deleteicon"
-              onMouseOver={() => this.iconOver("delete1")}
-              onMouseOut={() => this.iconOut("delete1")}
-            />
-            &nbsp; &nbsp; &nbsp;
-            <div className="togglecontrol">
-              {/* <div className="row toggleupperspace"> */}
-              <div className={styles.row}>
-                <div className={styles["col-4"]}>
+          <h5 className={styles["contact-header"]}>Contact</h5>
+          <div className={`${styles.row} ${styles["contact-toolbar"]}`}>
+                <div className={`${styles["col-3"]}`}>
+                <img
+                  src={this.state.save as string}
+                  height="20px"
+                  width="20px"
+                  className="saveicons"
+                  alt="saveicon"
+                  onMouseOver={() => this.iconOver("save")}
+                  onMouseOut={() => this.iconOut("save")}
+                />
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                <img
+                  src={this.state.delete1 as string}
+                  height="20px"
+                  width="20px"
+                  className="deleteicon1"
+                  alt="deleteicon"
+                  onMouseOver={() => this.iconOver("delete1")}
+                  onMouseOut={() => this.iconOut("delete1")}
+                />
+                  </div>
+                <div className={styles["col-1"]}>
                   <span className={styles.togglespan}>Individuals</span>
                 </div>
                 &nbsp; &nbsp;
-                <div className={styles["col-4"]}>
+                <div className={`${styles["col-1"]} ${styles["align-center"]}`}>
                   <img
                     src={toggle_ico as string}
                     height="25px"
@@ -277,14 +275,10 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                   />
                 </div>
                 &nbsp; &nbsp;
-                <div className={styles["col-4"]}>
+                <div className={styles["col-2"]}>
                   <span className={styles.togglespan}>Entities</span>
                 </div>
               </div>
-            </div>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            &nbsp;
-          </div>
           <div className="container myform">
             {/* <div className={styles.mainContainer} > */}
             <div className="namemargin"></div>
@@ -358,14 +352,14 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                 </div>
                 <div className={styles["col-2"]}>
                   <div className={styles["ms-TextField"]}>
-                    <div className="form-check">
+                    <div className={styles["decesased-flex"]}>
+                      <label
+                        className={`${styles["ms-Label"]}  ${styles.labelposition} `}
+                        htmlFor="gridCheck"
+                      >
+                        Deceased
+                      </label>
                       <span>
-                        <label
-                          className={`${styles["ms-Label"]}  ${styles.labelposition} `}
-                          htmlFor="gridCheck"
-                        >
-                          Deceased
-                        </label>
                         <input
                           className="form-check-input"
                           type="checkbox"
@@ -602,9 +596,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                     </div>
                   </div>
                   <div className={styles["col-4"]}>
-                    <div
-                      className={`${styles["ms-TextField"]}`}
-                    >
+                    <div className={`${styles["ms-TextField"]}`}>
                       <label
                         className={styles["ms-Label"]}
                         htmlFor="formGroupExampleInput"
@@ -620,7 +612,6 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                     </div>
                   </div>
                 </div>
-                
               </div>
             )}
 
@@ -628,81 +619,77 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
               <div>
                 <hr className="marigin" />
                 <h5>Signaturies</h5>
-                <label className={styles["preffered-sign"]} >Preffered Signatory</label>
+                <label className={styles["preffered-sign"]}>
+                  Preffered Signatory
+                </label>
                 <div
                   className={`${styles["ms-TextField"]} ${styles["table-input"]} ${styles["table-input-signaturies"]}`}
                 >
                   <span>
-                  <img
-                    src={this.state.edit2 as string}
-                    height="18px"
-                    width="18px"
-                    className="editicons"
-                    alt="editicon"
-                    onMouseOver={() => this.iconOver("edit2")}
-                    onMouseOut={() => this.iconOut("edit2")}
-                  />
+                    <img
+                      src={this.state.edit2 as string}
+                      height="18px"
+                      width="18px"
+                      className="editicons"
+                      alt="editicon"
+                      onMouseOver={() => this.iconOver("edit2")}
+                      onMouseOut={() => this.iconOut("edit2")}
+                    />
                   </span>
                   &nbsp; &nbsp; &nbsp;
                   <span>
-                  <img
-                    src={this.state.delete as string}
-                    height="18px"
-                    width="18px"
-                    className="deleteicons"
-                    alt="deleteicon"
-                    onMouseOver={() => this.iconOver("delete")}
-                    onMouseOut={() => this.iconOut("delete")}
-                  />
+                    <img
+                      src={this.state.delete as string}
+                      height="18px"
+                      width="18px"
+                      className="deleteicons"
+                      alt="deleteicon"
+                      onMouseOver={() => this.iconOver("delete")}
+                      onMouseOut={() => this.iconOut("delete")}
+                    />
                   </span>
                   <span>
-                  <input
-                    type="text"
-                    className={`${styles["ms-TextField-field"]} ${styles["table-input"]} ${styles["margin-icons"]}`}
-                    ref={node => (this.refe1 = node)}
-                    value={this.state.selectedDocument["_docname"]}
-                    id="formGroupExampleInput"
-                    placeholder=" "
-                    onChange={e => this.changeDocument(e)}
-                  />
+                    <input
+                      type="text"
+                      className={`${styles["ms-TextField-field"]} ${styles["table-input"]} ${styles["margin-icons"]}`}
+                      ref={node => (this.refe1 = node)}
+                      value={this.state.selectedDocument["_docname"]}
+                      id="formGroupExampleInput"
+                      placeholder=" "
+                      onChange={e => this.changeDocument(e)}
+                    />
                   </span>
                   <span>
-                  <i
-                    className="far fa-2x fa-plus"
-                    onClick={this.saveDocuments}
-                  ></i>
+                    <i
+                      className="far fa-2x fa-plus"
+                      onClick={this.saveDocuments}
+                    ></i>
                   </span>
-                  
                   <span className={styles["margin-icons"]}>
-                  <img
-                    src={this.state.edit2 as string}
-                    height="18px"
-                    width="18px"
-                    className="editicons"
-                    alt="editicon"
-                    onMouseOver={() => this.iconOver("edit2")}
-                    onMouseOut={() => this.iconOut("edit2")}
-                  />
+                    <img
+                      src={this.state.edit2 as string}
+                      height="18px"
+                      width="18px"
+                      className="editicons"
+                      alt="editicon"
+                      onMouseOver={() => this.iconOver("edit2")}
+                      onMouseOut={() => this.iconOut("edit2")}
+                    />
                   </span>
-                  
                   <span className={styles["margin-icons"]}>
-                  
-                    <input type="checkbox" name="sign"/>
-                    
+                    <input type="checkbox" name="sign" />
                   </span>
-                  
                   <span className={styles["margin-icons"]}>
-                  <img
-                    src={this.state.plus as string}
-                    height="18px"
-                    width="18px"
-                    className="editicons"
-                    alt="editicon"
-                    onMouseOver={() => this.iconOver("edit2")}
-                    onMouseOut={() => this.iconOut("edit2")}
-                  />
+                    <img
+                      src={this.state.plus as string}
+                      height="18px"
+                      width="18px"
+                      className="editicons"
+                      alt="editicon"
+                      onMouseOver={() => this.iconOver("edit2")}
+                      onMouseOut={() => this.iconOut("edit2")}
+                    />
                   </span>
-                  
                 </div>
 
                 <div className={styles["document-Tabel"]}>
@@ -718,9 +705,9 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                             />
                           </div>
                         </th>
-                        <th scope="col">Document Name</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Who Uploaded</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Preferred Name</th>
                       </tr>
                     </thead>
                   </table>
@@ -733,7 +720,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                     <tbody>
                       {this.state.documents.map(row => (
                         <tr>
-                          <th scope="row">
+                          <td scope="row">
                             <div className="form-check form-check-align">
                               <input
                                 className="form-check-input"
@@ -747,7 +734,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                                 }}
                               />
                             </div>
-                          </th>
+                          </td>
                           <td>{row.docname}</td>
                           <td>{row.dateuploaded}</td>
                           <td>{row.whouploaded}</td>
@@ -983,8 +970,12 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
             <hr className="marigin" />
             <h5>Parent (Individual or Entity)</h5>
             <div className={styles.row}>
-              <div className={styles["col-7"]}>
-                <div className={styles["ms-TextField"]}>
+              <div className={styles["col-3"]}>
+                <div className={styles["type-Ahead"]}>
+                <Typeahead
+                      options={['John', 'Paul', 'George', 'Ringo']}
+                      maxVisible={2}
+                    />
                   {/*  <Typeahead
                   selected={this.state.selected}
                   id="basic-example"
@@ -992,7 +983,6 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                   options={parents}
                   placeholder="Choose..."
                 /> */}
-                <input className={styles["ms-TextField-field"]} type="text" />
                 </div>
               </div>
               <div
@@ -1082,7 +1072,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                 <tbody>
                   {this.state.comments.map(row => (
                     <tr>
-                      <th scope="row">
+                      <td scope="row">
                         <div className="form-check form-check-align">
                           <input
                             className="form-check-input"
@@ -1096,7 +1086,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                             }}
                           />
                         </div>
-                      </th>
+                      </td>
 
                       <td>{row.gcomment}</td>
 
@@ -1146,10 +1136,16 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                     placeholder=" "
                     onChange={e => this.changeDocument(e)}
                   />
-                  <i
-                    className="far fa-2x fa-plus"
-                    onClick={this.saveDocuments}
-                  ></i>
+                  <img
+                  src={this.state.delete1 as string}
+                  height="20px"
+                  width="20px"
+                  className="deleteicon1"
+                  alt="deleteicon"
+                  onMouseOver={() => this.iconOver("delete1")}
+                  onMouseOut={() => this.iconOut("delete1")}
+                  onClick={this.saveDocuments}
+                />                  
                 </div>
 
                 <div className={styles["document-Tabel"]}>
@@ -1180,7 +1176,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                     <tbody>
                       {this.state.documents.map(row => (
                         <tr>
-                          <th scope="row">
+                          <td scope="row">
                             <div className="form-check form-check-align">
                               <input
                                 className="form-check-input"
@@ -1194,7 +1190,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                                 }}
                               />
                             </div>
-                          </th>
+                          </td>
                           <td>{row.docname}</td>
                           <td>{row.dateuploaded}</td>
                           <td>{row.whouploaded}</td>

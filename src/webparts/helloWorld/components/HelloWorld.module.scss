@@ -1,11 +1,33 @@
 @import '~office-ui-fabric-react/dist/sass/References.scss';
 
 .helloWorld {
-  background: f1f1f1;
+  background: #f1f1f1;
+  padding-left: 5px;
+  padding-left: 5px;
+  max-height: 500px;
+  overflow-y: scroll;
+  h5{
+    margin-left: 18px!important;
+    margin-top: 10px!important;
+  }
   .container {
     max-width: 700px;
     margin: 0px auto;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  }
+  .contact-header{
+    background-color: #003;
+    height: 34px;
+    color: #fff;
+    font-size: 15px;
+    margin: 0 0 0 0;
+    padding-top: 11px;
+    margin-left: -4px;
+    padding-left: 11px;
+
+  }
+  .decesased-flex{
+    display: flex;
   }
 
   .row {
@@ -74,6 +96,10 @@
     @include ms-lg12
   }
 
+  .align-center{
+    text-align: center;
+  }
+
   .form-control{    
     display: block;
     width: 100%;
@@ -135,10 +161,6 @@
 
   .ms-CheckBoxField{
     display: inline-block;
-    margin-left: 20px;
-    margin-top: 32px;
-
-
     .ms-Label{
       margin: 0;
       padding: 0;
@@ -191,6 +213,25 @@
   .description {
     @include ms-font-l;
     @include ms-fontColor-white;
+  }
+
+  .type-Ahead{
+    input[type=text]{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      border: 1px solid #c8c8c8;
+      border-radius: 0;
+      font-weight: 300;
+      font-size: 14px;
+      color: #333;
+      height: 32px;
+      padding: 6px 12px 7px;
+      width: 100%;
+      outline: 0;
+      text-overflow: ellipsis;
+    }
   }
 
   .preffered-sign{
@@ -462,20 +503,14 @@
     box-shadow: 8px 10px 8px #52525B;
     padding: 0px;
   }
-  .contact-header{
-    background-color: #000033;
-    height: 34px;
-    color: white;
-    font-size: 15px;
-  
-    margin: 0px;
-    padding: 10px;
-  }
   .contact-toolbar{
-    background-color: #52525B;
+    background-color: #52525b;
     height: 34px;
     padding-left: 5px;
-    color: white;
+    color: #fff;
+    width: 100.5%;
+    margin-left: -4px;
+    padding-top: 5px;
   }
   .saveicons{
     margin: 2px;
@@ -583,6 +618,7 @@
   }
   .align-deceased{
   margin-top: 30px;
+  
   }
   .icons-align{
     margin-top: 0px;
@@ -667,7 +703,6 @@
       padding: 2px;
       margin: 2px;
       margin-left: 72px;
-    
     }
   .table-striped tbody tr:nth-of-type(odd) {
     background-color: #e9ecefc7;
