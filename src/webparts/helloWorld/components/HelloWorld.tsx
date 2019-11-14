@@ -41,7 +41,8 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
     selected: [],
     selectedCountry: 0,
     zipvalidator: true,
-    activeForm: 0
+    activeForm: 0,
+    homequatere: false
   };
 
   refe2;
@@ -77,6 +78,10 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
         break;
     }
   };
+
+  changeHomeQuarter = (e) => {
+    this.setState({homequatere : e.target.checked});
+  }
 
   iconOut = type => {
     switch (type) {
@@ -237,14 +242,16 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
     return (
       <div className={styles.helloWorld}>
         <div className="container main-container ">
+          <div className={styles["contact-header-container"]}>
           <h5 className={styles["contact-header"]}>Contact</h5>
+          </div>          
           <div className={`${styles.row} ${styles["contact-toolbar"]}`}>
-                <div className={`${styles["col-3"]}`}>
+                <div className={`${styles["col-2"]} ${styles["toolbar-align"]}`}>
                 <img
                   src={this.state.save as string}
-                  height="20px"
-                  width="20px"
-                  className="saveicons"
+                  height="16px"
+                  width="16px"
+                 
                   alt="saveicon"
                   onMouseOver={() => this.iconOver("save")}
                   onMouseOut={() => this.iconOut("save")}
@@ -252,9 +259,9 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                 &nbsp; &nbsp; &nbsp; &nbsp;
                 <img
                   src={this.state.delete1 as string}
-                  height="20px"
-                  width="20px"
-                  className="deleteicon1"
+                  height="16px"
+                  width="16px"
+          
                   alt="deleteicon"
                   onMouseOver={() => this.iconOver("delete1")}
                   onMouseOut={() => this.iconOut("delete1")}
@@ -267,9 +274,9 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                 <div className={`${styles["col-1"]} ${styles["align-center"]}`}>
                   <img
                     src={toggle_ico as string}
-                    height="25px"
+                    height="15px"
                     width="25px"
-                    className="toggleicon"
+                    className={styles.toggleicon}
                     alt="toggleicon"
                     onClick={this.toggleForms}
                   />
@@ -279,12 +286,36 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                   <span className={styles.togglespan}>Entities</span>
                 </div>
               </div>
-          <div className="container myform">
+          <div className={styles.myform}>
             {/* <div className={styles.mainContainer} > */}
             <div className="namemargin"></div>
-            <h5 className={styles.formHeading}>Name</h5>
+            <div className={`${styles.row} ${styles.formHeading}`}>
+            <div className={styles["col-9"]}>
+              <h5>Name</h5>
+            </div>
+            <div className={styles["col-2"]}>
+            <div className={styles["ms-TextField"]}>
+                    <div className={styles["decesased-flex"]}>
+                      <label
+                        className={`${styles["ms-Label"]}  ${styles.labelposition} `}
+                        htmlFor="gridCheck"
+                      >
+                        Deceased
+                      </label>
+                      <span>
+                        <input
+                
+                          type="checkbox"
+                          id="gridCheck"
+                        />
+                      </span>
+                    </div>
+                  </div>
+            </div>
+            </div>
+            
             {this.state.activeForm === 0 && (
-              <div className={styles.row}>
+              <div className={`${styles.row} ${styles.paddingTopZero}`}>
                 {/* <div className="col-2 contactcolsize"> */}
                 <div className={`${styles["col-2"]} ${styles.contactcolsize}`}>
                   <div className={styles["ms-TextField"]}>
@@ -292,7 +323,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                       className={styles["ms-Label"]}
                       htmlFor="formGroupExampleInput"
                     >
-                      First Name <span className="required"> *</span>
+                      First Name <span className={styles.required}> *</span>
                     </label>
                     <input
                       type="text"
@@ -351,23 +382,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                   </div>
                 </div>
                 <div className={styles["col-2"]}>
-                  <div className={styles["ms-TextField"]}>
-                    <div className={styles["decesased-flex"]}>
-                      <label
-                        className={`${styles["ms-Label"]}  ${styles.labelposition} `}
-                        htmlFor="gridCheck"
-                      >
-                        Deceased
-                      </label>
-                      <span>
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          id="gridCheck"
-                        />
-                      </span>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             )}
@@ -380,7 +395,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                       className={styles["ms-Label"]}
                       htmlFor="formGroupExampleInput"
                     >
-                      Entity Name <span className="required"> *</span>
+                      Entity Name <span className={styles.required}> *</span>
                     </label>
                     <input
                       type="text"
@@ -397,18 +412,18 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                       htmlFor="formGroupExampleInput"
                     >
                       c/o Name
-                    </label>
-                    <input
-                      type="text"
-                      className={styles["ms-TextField-field"]}
-                      id="formGroupExampleInput"
-                      placeholder=" "
-                    />
+                    </label>                    
+                     <div className={styles["type-Ahead"]}>
+                      <Typeahead
+                            options={['John', 'Paul', 'George', 'Ringo']}
+                            maxVisible={2}
+                          />
+                          </div>
                   </div>
                 </div>
               </div>
             )}
-            <hr className="marigin" />
+            <hr />
             <h5 className={styles.formHeading}>Contact</h5>
             {this.state.activeForm === 0 && (
               <div>
@@ -617,47 +632,45 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
 
             {this.state.activeForm === 1 && (
               <div>
-                <hr className="marigin" />
-                <h5>Signaturies</h5>
+                <hr  />
+                <h5>Signatories</h5>
                 <label className={styles["preffered-sign"]}>
                   Preffered Signatory
                 </label>
                 <div
-                  className={`${styles["ms-TextField"]} ${styles["table-input"]} ${styles["table-input-signaturies"]}`}
+                  className={`${styles["ms-TextField"]} ${styles["table-input"]} ${styles["table-input-signaturies"]} ${styles.mLeft}`}
                 >
                   <span>
                     <img
                       src={this.state.edit2 as string}
                       height="18px"
                       width="18px"
-                      className="editicons"
+                      
                       alt="editicon"
                       onMouseOver={() => this.iconOver("edit2")}
                       onMouseOut={() => this.iconOut("edit2")}
                     />
                   </span>
-                  &nbsp; &nbsp; &nbsp;
+                  
                   <span>
                     <img
                       src={this.state.delete as string}
                       height="18px"
                       width="18px"
-                      className="deleteicons"
+                      className={styles.signotorydeleteicons}
                       alt="deleteicon"
                       onMouseOver={() => this.iconOver("delete")}
                       onMouseOut={() => this.iconOut("delete")}
                     />
                   </span>
                   <span>
-                    <input
-                      type="text"
-                      className={`${styles["ms-TextField-field"]} ${styles["table-input"]} ${styles["margin-icons"]}`}
-                      ref={node => (this.refe1 = node)}
-                      value={this.state.selectedDocument["_docname"]}
-                      id="formGroupExampleInput"
-                      placeholder=" "
-                      onChange={e => this.changeDocument(e)}
-                    />
+                  
+                    <div className={`${styles["type-Ahead"]} ${styles["table-input"]} ${styles["margin-icons"]}`}>
+                      <Typeahead
+                            options={['John', 'Paul', 'George', 'Ringo']}
+                            maxVisible={2}
+                          />
+                          </div>
                   </span>
                   <span>
                     <i
@@ -670,7 +683,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                       src={this.state.edit2 as string}
                       height="18px"
                       width="18px"
-                      className="editicons"
+                      
                       alt="editicon"
                       onMouseOver={() => this.iconOver("edit2")}
                       onMouseOut={() => this.iconOut("edit2")}
@@ -684,7 +697,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                       src={this.state.plus as string}
                       height="18px"
                       width="18px"
-                      className="editicons"
+              
                       alt="editicon"
                       onMouseOver={() => this.iconOver("edit2")}
                       onMouseOut={() => this.iconOut("edit2")}
@@ -692,7 +705,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                   </span>
                 </div>
 
-                <div className={styles["document-Tabel"]}>
+                <div className={`${styles["sign-Tabel"]} ${styles.mLeft}`}>
                   <table className={styles["table-Head"]}>
                     <thead>
                       <tr>
@@ -714,7 +727,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                 </div>
 
                 <div
-                  className={`${styles["document-Tabel"]} ${styles["scroll-table"]}`}
+                  className={`${styles["sign-Tabel"]} ${styles["scroll-table"]} ${styles.mLeft}`}
                 >
                   <table className={styles["table-Body"]}>
                     <tbody>
@@ -723,7 +736,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                           <td scope="row">
                             <div className="form-check form-check-align">
                               <input
-                                className="form-check-input"
+                    
                                 type="checkbox"
                                 id="gridCheck"
                                 name="document_chk"
@@ -737,7 +750,13 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                           </td>
                           <td>{row.docname}</td>
                           <td>{row.dateuploaded}</td>
-                          <td>{row.whouploaded}</td>
+                          <td>
+                            <input
+                            className={styles["ms-TextField"]}
+                            type="checkbox"
+                            id="gridCheck"
+                          />
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -746,7 +765,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
               </div>
             )}
 
-            <hr className="marigin" />
+            <hr  />
             <h5>Address</h5>
             <div className={styles.row}>
               <div className={styles["col-4"]}>
@@ -875,10 +894,11 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                     className={styles["ms-TextField-field"]}
                     id="formGroupExampleInput"
                     placeholder=" "
+                    disabled={this.state.homequatere}
                   />
                 </div>
               </div>
-              <div className={styles["col-4"]}>
+              <div className={styles["col-5"]}>
                 <div
                   className={`${styles["ms-CheckBoxField"]} ${styles["align-checkbox"]} `}
                 >
@@ -887,6 +907,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                       className={styles["ms-TextField"]}
                       type="checkbox"
                       id="gridCheck"
+                      onChange={this.changeHomeQuarter}
                     />{" "}
                   </span>
                   <span>Residence is the same as listed address</span>
@@ -895,7 +916,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                 </div>
               </div>
             </div>
-            <hr className="marigin" />
+            <hr />
             <h5>Tax Number </h5>
             <div className={styles.row}>
               <div className={styles["col-2"]}>
@@ -967,7 +988,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                 </div>
               </div>
             </div>
-            <hr className="marigin" />
+            <hr />
             <h5>Parent (Individual or Entity)</h5>
             <div className={styles.row}>
               <div className={styles["col-3"]}>
@@ -991,14 +1012,14 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                 <i className="fas fa-user"></i>
               </div>
             </div>
-            <hr className="marigin" />
+            <hr />
             <h5>Comments</h5>
-            <div>
+            <div className={styles.mLeft}>
               <img
                 src={this.state.edit as string}
                 height="18px"
                 width="18px"
-                className="editicons"
+              
                 alt="editicon"
                 onMouseOver={() => this.iconOver("edit")}
                 onMouseOut={() => this.iconOut("edit")}
@@ -1008,16 +1029,16 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                 src={this.state.delete3 as string}
                 height="18px"
                 width="18px"
-                className="deleteicons"
+              
                 alt="deleteicon"
                 onMouseOver={() => this.iconOver("delete3")}
                 onMouseOut={() => this.iconOut("delete3")}
               />
             </div>
             <div
-              className={`${styles["ms-TextField"]} ${styles["table-input"]}`}
+              className={`${styles["ms-TextField"]} ${styles["table-input"]} ${styles.mLeft}`}
             >
-              <div className="form-group custom-form-input">
+              <div>
                 <span>
                   <input
                     type="text"
@@ -1029,12 +1050,11 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                     onChange={e => this.changeComment(e)}
                   />
                 </span>
-                <span>
+                <span className={styles["margin-icons"]}>
                   <img
                     src={this.state.plus as string}
                     height="18px"
                     width="18px"
-                    className="plusicon"
                     alt="plusicon"
                     onMouseOver={() => this.iconOver("plus")}
                     onMouseOut={() => this.iconOut("plus")}
@@ -1044,14 +1064,13 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
               </div>
             </div>
 
-            <div className={`${styles["comments-Tabel"]}`}>
+            <div className={`${styles["comments-Tabel"]} ${styles.mLeft}`}>
               <table className={styles["table-Head"]}>
                 <thead>
                   <tr>
                     <th scope="row">
-                      <div className="form-check form-check-align">
-                        <input
-                          className="form-check-input"
+                      <div>
+                        <input                          
                           type="checkbox"
                           id="gridCheck"
                         />
@@ -1066,7 +1085,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
             </div>
 
             <div
-              className={` ${styles["scroll-table"]} ${styles["comments-Tabel"]}`}
+              className={` ${styles["scroll-table"]} ${styles["comments-Tabel"]} ${styles.mLeft}`}
             >
               <table className={styles["table-Body"]}>
                 <tbody>
@@ -1101,14 +1120,14 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
 
             {this.state.activeForm === 0 && (
               <div>
-                <hr className="marigin" />
+                <hr />
                 <h5>Documents</h5>
-                <div>
+                <div className={styles.mLeft}>
                   <img
                     src={this.state.edit2 as string}
                     height="18px"
                     width="18px"
-                    className="editicons"
+                
                     alt="editicon"
                     onMouseOver={() => this.iconOver("edit2")}
                     onMouseOut={() => this.iconOut("edit2")}
@@ -1118,14 +1137,14 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                     src={this.state.delete as string}
                     height="18px"
                     width="18px"
-                    className="deleteicons"
+                    
                     alt="deleteicon"
                     onMouseOver={() => this.iconOver("delete")}
                     onMouseOut={() => this.iconOut("delete")}
                   />
                 </div>
                 <div
-                  className={`${styles["ms-TextField"]} ${styles["table-input"]}`}
+                  className={`${styles["ms-TextField"]} ${styles["table-input"]} ${styles.mLeft}`}
                 >
                   <input
                     type="text"
@@ -1140,7 +1159,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                   src={this.state.delete1 as string}
                   height="20px"
                   width="20px"
-                  className="deleteicon1"
+                 
                   alt="deleteicon"
                   onMouseOver={() => this.iconOver("delete1")}
                   onMouseOut={() => this.iconOut("delete1")}
@@ -1148,7 +1167,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                 />                  
                 </div>
 
-                <div className={styles["document-Tabel"]}>
+                <div className={`${styles["document-Tabel"]} ${styles.mLeft}`}>
                   <table className={styles["table-Head"]}>
                     <thead>
                       <tr>
@@ -1170,7 +1189,7 @@ export default class HelloWorld extends React.Component<IHelloWorldProps, {}> {
                 </div>
 
                 <div
-                  className={`${styles["document-Tabel"]} ${styles["scroll-table"]}`}
+                  className={`${styles["document-Tabel"]} ${styles["scroll-table"]} ${styles.mLeft}`}
                 >
                   <table className={styles["table-Body"]}>
                     <tbody>
